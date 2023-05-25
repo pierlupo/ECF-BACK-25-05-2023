@@ -47,7 +47,7 @@ public class Ihm {
         System.out.println("########  Menu  #########");
         System.out.println("1 -- Member Menu");
         System.out.println("2 -- Activity Menu");
-        System.out.println("3 -- Employee Menu");
+//        System.out.println("3 -- Employee Menu");
         System.out.println("0 -- Quit ");
     }
     // 1 - CRUD Member
@@ -57,26 +57,14 @@ public class Ihm {
             menuMember();
             memberChoice = scanner.nextLine();
             switch (memberChoice) {
-                case "1":
-                    addMember();
-                    break;
-                case "2":
-                    updateMember();
-                    break;
-                case "3":
-                    deleteMember();
-                    break;
-                case "4":
-                    getOneMemberById();
-                    break;
-                case "5":
-                    getAllMembers();
-                    break;
-                case "6":
-                    System.out.println("Go Back -->");
-                    break;
-                default:
-                    System.out.println("Invalid choice");
+                case "1" -> addMember();
+                case "2" -> updateMember();
+                case "3" -> deleteMember();
+                case "4" -> getOneMemberById();
+                case "5" -> getAllMembers();
+                case "6" -> addNewActivityToMember();
+                case "7" -> System.out.println("Go Back -->");
+                default -> System.out.println("Invalid choice");
             }
         } while (!memberChoice.equals("6"));
     }
@@ -95,7 +83,8 @@ public class Ihm {
         System.out.println("3 - Delete a member");
         System.out.println("4 - Display one member");
         System.out.println("5 - Display all members");
-        System.out.println("6 - go back");
+        System.out.println("6 - Add an activity to a member");
+        System.out.println("7 - go back");
         System.out.println("*************************");
     }
 
@@ -120,6 +109,7 @@ public class Ihm {
 
     private void updateMember(){
 
+        getAllMembers();
         System.out.println("Please enter the id of the member you want to update : ");
         int id = scanner.nextInt();
         scanner.nextLine();
@@ -170,6 +160,27 @@ public class Ihm {
             System.out.println(mb);
         }
     }
+    private void addNewActivityToMember(){
+        getAllMembers();
+        scanner.nextLine();
+        getAllActivities();
+        scanner.nextLine();
+        System.out.println("Please enter the id of the member : ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Please enter the name of the activity : ");
+        String name = scanner.nextLine();
+        try {
+            Activity activity = new Activity(name);
+            if(memberService.addActivityToMember(activity,id)){
+                System.out.println("Member added to this activity successfully !");
+            }else {
+                System.out.println("Error");
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
     // 1 - CRUD Activity
     private void ActivityMenu() {
 
@@ -177,26 +188,13 @@ public class Ihm {
             menuActivity();
             activityChoice = scanner.nextLine();
             switch (activityChoice) {
-                case "1":
-                    addActivity();
-                    break;
-                case "2":
-                    updateActivity();
-                    break;
-                case "3":
-                    deleteActivity();
-                    break;
-                case "4":
-                    getOneActivityById();
-                    break;
-                case "5":
-                    getAllActivities();
-                    break;
-                case "6":
-                    System.out.println("Go Back -->");
-                    break;
-                default:
-                    System.out.println("Invalid choice");
+                case "1" -> addActivity();
+                case "2" -> updateActivity();
+                case "3" -> deleteActivity();
+                case "4" -> getOneActivityById();
+                case "5" -> getAllActivities();
+                case "6" -> System.out.println("Go Back -->");
+                default -> System.out.println("Invalid choice");
             }
         } while (!memberChoice.equals("6"));
     }

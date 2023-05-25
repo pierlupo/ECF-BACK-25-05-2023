@@ -31,6 +31,10 @@ public class Activity {
         Timetable = timetable;
     }
 
+    public Activity(String name) {
+        this.name = name;
+    }
+
     public Time getTimetable() {
 
         return Timetable;

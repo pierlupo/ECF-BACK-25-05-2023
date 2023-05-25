@@ -1,6 +1,7 @@
 package org.example.service;
 
 import org.example._interface.Repository;
+import org.example.entity.Activity;
 import org.example.entity.Member;
 import org.hibernate.query.Query;
 
@@ -55,7 +56,20 @@ public class MemberService extends BaseService implements Repository<Member> {
         session.close();
         return memberList;
     }
-
+    public boolean addActivityToMember(Activity activity, int id) {
+        boolean result = false;
+        Member member = this.findById(id);
+        session =sessionFactory.openSession();
+        session.getTransaction().begin();
+        if(member != null) {
+            activity.setMembers(member);
+            session.save(activity);
+            result = true;
+        }
+        session.getTransaction().commit();
+        session.close();
+        return result;
+    }
     public void begin(){
         session = sessionFactory.openSession();
     }
