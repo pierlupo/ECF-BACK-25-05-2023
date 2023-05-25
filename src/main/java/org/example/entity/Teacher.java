@@ -19,7 +19,7 @@ public class Teacher {
     private int age;
 
     @OneToMany(mappedBy = "teacher")
-    private List<Activity> activities = new ArrayList<>();
+    private List<Activity> activities;
 
     public Teacher() {
     }

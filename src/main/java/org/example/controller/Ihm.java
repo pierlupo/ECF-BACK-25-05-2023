@@ -51,7 +51,7 @@ public class Ihm {
         System.out.println("########  Menu  #########");
         System.out.println("1 -- Member Menu");
         System.out.println("2 -- Activity Menu");
-//        System.out.println("3 -- Employee Menu");
+        System.out.println("3 -- Teacher Menu");
         System.out.println("0 -- Quit ");
     }
 
@@ -226,7 +226,7 @@ public class Ihm {
         System.out.println("#######################################");
         System.out.println(" ECF(Back)--SportCenter--Activities' Menu ");
         System.out.println("#######################################");
-        System.out.println("*************************");
+        System.out.println("#########################");
         System.out.println("Choose an option please :");
         System.out.println("*************************");
         System.out.println("1 - Add a new activity");
@@ -236,7 +236,7 @@ public class Ihm {
         System.out.println("5 - Display all activities");
       //  System.out.println("6 - Add an activity to a member");
         System.out.println("6 - go back -->");
-        System.out.println("*************************");
+        System.out.println("#########################");
     }
 
     private void addActivity(){
@@ -337,7 +337,7 @@ public class Ihm {
                 case "6" -> System.out.println("Go Back -->");
                 default -> System.out.println("Invalid choice");
             }
-        } while (!activityChoice.equals("6"));
+        } while (!teacherChoice.equals("6"));
     }
 
     //  Sous Menu Teacher
@@ -346,7 +346,7 @@ public class Ihm {
         System.out.println("#######################################");
         System.out.println(" ECF(Back)--SportCenter--Teacher's Menu ");
         System.out.println("#######################################");
-        System.out.println("*************************");
+        System.out.println("#########################");
         System.out.println("Choose an option please :");
         System.out.println("*************************");
         System.out.println("1 - Add a new teacher");
@@ -355,16 +355,16 @@ public class Ihm {
         System.out.println("4 - Display one teacher");
         System.out.println("5 - Display all teachers");
         System.out.println("6 - go back -->");
-        System.out.println("*************************");
+        System.out.println("#########################");
     }
 
     private void addTeacher(){
 
-        System.out.println("Please enter your lastname : ");
+        System.out.println("Please enter teacher's lastname : ");
         String lastname = scanner.nextLine();
-        System.out.println("Please enter your firstname : ");
+        System.out.println("Please enter teacher's firstname : ");
         String firstname = scanner.nextLine();
-        System.out.println("Please enter your age : ");
+        System.out.println("Please enter teacher's age : ");
         int age = scanner.nextInt();
         scanner.nextLine();
         try {
@@ -386,7 +386,7 @@ public class Ihm {
         System.out.println("Please enter the teacher's firstname : ");
         String firstname = scanner.nextLine();
         t.setFirstName(firstname);
-        System.out.println("Please enter your age : ");
+        System.out.println("Please enter the teacher's age : ");
         int age = scanner.nextInt();
         scanner.nextLine();
         t.setAge(age);
