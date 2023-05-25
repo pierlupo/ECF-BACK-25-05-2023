@@ -2,12 +2,11 @@ package org.example.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "member")
-public class Member {
+@Table(name = "teacher")
+public class Teacher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,29 +18,17 @@ public class Member {
 
     private int age;
 
-    @Temporal(TemporalType.DATE)
-    private Date registrationDate;
+    @OneToMany(mappedBy = "teacher")
+    private List<Activity> activities = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "member")
-//    private List<Activity> activities = new ArrayList<>();
-
-    public Member() {
+    public Teacher() {
     }
 
-    public Member(String lastName, String firstName, int age, Date registrationDate) {
+    public Teacher(String lastName, String firstName, int age) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.age = age;
-        this.registrationDate = registrationDate;
     }
-
-//    public List<Activity> getActivities() {
-//        return activities;
-//    }
-//
-//    public void setActivities(List<Activity> activities) {
-//        this.activities = activities;
-//    }
 
     public int getId() {
         return id;
@@ -75,22 +62,22 @@ public class Member {
         this.age = age;
     }
 
-    public Date getRegistrationDate() {
-        return registrationDate;
+    public List<Activity> getActivities() {
+        return activities;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
     }
 
     @Override
     public String toString() {
-        return "Member{" +
+        return "Teacher{" +
                 "id=" + id +
                 ", lastName='" + lastName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", age=" + age +
-                ", registrationDate=" + registrationDate +
+                ", activities=" + activities +
                 '}';
     }
 }

@@ -22,7 +22,7 @@ public class MemberService extends BaseService implements Repository<Member> {
     public boolean update(Member element) {
         session = sessionFactory.openSession();
         session.beginTransaction();
-        session.delete(element);
+        session.update(element);
         session.getTransaction().commit();
         session.close();
         return true;
@@ -56,13 +56,14 @@ public class MemberService extends BaseService implements Repository<Member> {
         session.close();
         return memberList;
     }
+
     public boolean addActivityToMember(Activity activity, int id) {
         boolean result = false;
         Member member = this.findById(id);
         session =sessionFactory.openSession();
         session.getTransaction().begin();
         if(member != null) {
-            activity.setMembers(member);
+            activity.addMember(member);
             session.save(activity);
             result = true;
         }
@@ -70,6 +71,15 @@ public class MemberService extends BaseService implements Repository<Member> {
         session.close();
         return result;
     }
+    public List<Member> getActivitiesByMemberId(int  id){
+        session = sessionFactory.openSession();
+        Query<Member> memberQuery = session.createQuery("select distinct name from Activity where id =:id");
+        memberQuery.setParameter("id", id);
+        List<Member> memberList = memberQuery.list();
+        session.close();
+        return memberList;
+    }
+
     public void begin(){
         session = sessionFactory.openSession();
     }

@@ -2,14 +2,14 @@ package org.example.service;
 
 import org.example._interface.Repository;
 import org.example.entity.Activity;
-import org.example.entity.Member;
+import org.example.entity.Teacher;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class ActivityService extends BaseService implements Repository<Activity> {
+public class TeacherService extends BaseService implements Repository<Teacher> {
     @Override
-    public boolean create(Activity element) {
+    public boolean create(Teacher element) {
         session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(element);
@@ -19,7 +19,7 @@ public class ActivityService extends BaseService implements Repository<Activity>
     }
 
     @Override
-    public boolean update(Activity element) {
+    public boolean update(Teacher element) {
         session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(element);
@@ -29,7 +29,7 @@ public class ActivityService extends BaseService implements Repository<Activity>
     }
 
     @Override
-    public boolean delete(Activity element) {
+    public boolean delete(Teacher element) {
         session = sessionFactory.openSession();
         session.beginTransaction();
         session.delete(element);
@@ -39,21 +39,21 @@ public class ActivityService extends BaseService implements Repository<Activity>
     }
 
     @Override
-    public Activity findById(int id) {
-        Activity activity = null;
+    public Teacher findById(int id) {
+        Teacher teacher = null;
         session = sessionFactory.openSession();
-        activity = (Activity) session.get(Activity.class, id);
+        teacher = (Teacher) session.get(Teacher.class, id);
         session.close();
-        return activity;
+        return teacher;
     }
 
     @Override
-    public List<Activity> findAll() {
-        List<Activity> activityList = null;
+    public List<Teacher> findAll() {
+        List<Teacher> teacherList = null;
         session = sessionFactory.openSession();
-        Query<Activity> activityQuery = session.createQuery("from Activity");
-        activityList = activityQuery.list();
+        Query<Teacher> teacherQuery = session.createQuery("from Teacher");
+        teacherList = teacherQuery.list();
         session.close();
-        return activityList;
+        return teacherList;
     }
 }
